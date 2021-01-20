@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PersonnelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -66,6 +68,16 @@ class Personnel
      * @ORM\Column(type="string", length=255)
      */
     private $email;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Epreuve::class, mappedBy="personnels")
+     */
+    private $epreuves;
+
+    public function __construct()
+    {
+        $this->epreuves = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -190,5 +202,37 @@ class Personnel
         $this->email = $email;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Epreuve[]
+     */
+    public function getEpreuves(): Collection
+    {
+        return $this->epreuves;
+    }
+
+    public function addEpreufe(Epreuve $epreufe): self
+    {
+        if (!$this->epreuves->contains($epreufe)) {
+            $this->epreuves[] = $epreufe;
+            $epreufe->addPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEpreufe(Epreuve $epreufe): self
+    {
+        if ($this->epreuves->removeElement($epreufe)) {
+            $epreufe->removePersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString(): ?String
+    {
+        return $this->getNom();
     }
 }

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Epreuve{% endblock %}
+
+{% block body %}
+    <h1>Epreuve</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ epreuve.id }}</td>
+            </tr>
+            <tr>
+                <th>Intitule</th>
+                <td>{{ epreuve.intitule }}</td>
+            </tr>
+            <tr>
+                <th>Periodicite</th>
+                <td>{{ epreuve.periodicite ? epreuve.periodicite|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('epreuve_index') }}">back to list</a>
+
+    <a href="{{ path('epreuve_edit', {'id': epreuve.id}) }}">edit</a>
+
+    {{ include('epreuve/_delete_form.html.twig') }}
+{% endblock %}

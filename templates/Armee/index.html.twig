@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Armee index{% endblock %}
+
+{% block body %}
+    <h1>Armee index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Intitule</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for armee in armees %}
+            <tr>
+                <td>{{ armee.id }}</td>
+                <td>{{ armee.intitule }}</td>
+                <td>
+                    <a href="{{ path('armee_show', {'id': armee.id}) }}">show</a>
+                    <a href="{{ path('armee_edit', {'id': armee.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('armee_new') }}">Create new</a>
+{% endblock %}

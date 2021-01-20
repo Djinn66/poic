@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Epreuve;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class EpreuveType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('intitule')
+            ->add('periodicite')
+            ->add('armees')
+            ->add('personnels')
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Epreuve::class,
+        ]);
+    }
+}

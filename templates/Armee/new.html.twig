@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Armee{% endblock %}
+
+{% block body %}
+    <h1>Create new Armee</h1>
+
+    {{ include('armee/_form.html.twig') }}
+
+    <a href="{{ path('armee_index') }}">back to list</a>
+{% endblock %}
