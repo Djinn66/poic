@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bareme index{% endblock %}
+
+{% block body %}
+    <h1>Bareme index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Age_max</th>
+                <th>Sexe</th>
+                <th>Resultat_min</th>
+                <th>Note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bareme in baremes %}
+            <tr>
+                <td>{{ bareme.id }}</td>
+                <td>{{ bareme.ageMax }}</td>
+                <td>{{ bareme.sexe }}</td>
+                <td>{{ bareme.resultatMin }}</td>
+                <td>{{ bareme.note }}</td>
+                <td>
+                    <a href="{{ path('bareme_show', {'id': bareme.id}) }}">show</a>
+                    <a href="{{ path('bareme_edit', {'id': bareme.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('bareme_new') }}">Create new</a>
+{% endblock %}

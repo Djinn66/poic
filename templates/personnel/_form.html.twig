@@ -1,4 +1,35 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+<div class="col-lg-12">
+    <div class="form-panel">
+        <div class="form-horizontal style-form">
+            <h4>{{ type }} un personnel</h4>
+            {{ form_start(form) }}
+            {# {{ form_widget(form) }} #}
+            <div class="row">
+                <div class="col-md-5">{{ form_row(form.nom) }}</div>
+                <div class="col-md-5">{{ form_row(form.prenom) }}</div>
+                <div class="col-md-2">{{ form_row(form.sexe) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">{{ form_row(form.nia) }}</div>
+                <div class="col-md-6">{{ form_row(form.nid) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">{{ form_row(form.nsap) }}</div>
+                <div class="col-md-6">{{ form_row(form.nni) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">{{ form_row(form.date_de_naissance) }}</div>
+                <div class="col-md-5">{{ form_row(form.lieu_naissance) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">{{ form_row(form.email) }}</div>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a class="btn btn-outline-primary btn-sm" href="{{ path('personnel_index') }}"><i class="fa fa-backward"></i> Retour</a>
+                <button class="btn btn-theme btn-sm"><i class="fa fa-save"></i>{{ button_label|default(' Enregistrer') }}</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

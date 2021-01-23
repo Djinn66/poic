@@ -3,51 +3,59 @@
 {% block title %}Personnel index{% endblock %}
 
 {% block body %}
-    <h1>Personnel index</h1>
+    <h1></h1>
+    <div class="col-md-12">
+        <div class="content-panel">
+            <div class="row">
+                <div class="col-sm-11">
+            <h4><i class="fa fa-angle-right"></i> Liste du personnel</h4></div>
+                <div class="col-sm-1"><a class="btn btn-link-add" title="Ajouter" href="{{ path('personnel_new') }}"><i class="fa fa-plus"></i></a></div></div>
+            <section id="unseen">
+                <table class="table table-striped table-condensed">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Sexe</th>
+                    <th>Nia</th>
+                    <th>Nni</th>
+                    <th>Nid</th>
+                    <th>Nsap</th>
+                    <th>Date de naissance</th>
+                    <th>Lieu de naissance</th>
+                    <th>Email</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for personnel in personnels %}
+                    <tr>
+                        <td>{{ personnel.nom }}</td>
+                        <td>{{ personnel.prenom }}</td>
+                        <td>{{ personnel.sexe }}</td>
+                        <td>{{ personnel.nia }}</td>
+                        <td>{{ personnel.nni }}</td>
+                        <td>{{ personnel.nid }}</td>
+                        <td>{{ personnel.nsap }}</td>
+                        <td>{{ personnel.dateDeNaissance ? personnel.dateDeNaissance|date('Y-m-d') : '' }}</td>
+                        <td>{{ personnel.lieuNaissance }}</td>
+                        <td>{{ personnel.email }}</td>
+                        <td>
+                        <div class="row row-cols-2 ">
+{#                                <a class="btn btn-warning btn-sm" href="{{ path('personnel_show', {'id': personnel.id}) }}"><i class="fa fa-eye"></i></a>#}
+                                <a class="btn btn-sm btn-link-edit" title="Editer" href="{{ path('personnel_edit', {'id': personnel.id}) }}"><i class="fa fa-edit"></i></a>
+                                {{ include('personnel/_delete_form.html.twig') }}</div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="12">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Sexe</th>
-                <th>Nia</th>
-                <th>Nni</th>
-                <th>Nid</th>
-                <th>Nsap</th>
-                <th>Date_de_naissance</th>
-                <th>Lieu_naissance</th>
-                <th>Email</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for personnel in personnels %}
-            <tr>
-                <td>{{ personnel.id }}</td>
-                <td>{{ personnel.nom }}</td>
-                <td>{{ personnel.prenom }}</td>
-                <td>{{ personnel.sexe }}</td>
-                <td>{{ personnel.nia }}</td>
-                <td>{{ personnel.nni }}</td>
-                <td>{{ personnel.nid }}</td>
-                <td>{{ personnel.nsap }}</td>
-                <td>{{ personnel.dateDeNaissance ? personnel.dateDeNaissance|date('Y-m-d') : '' }}</td>
-                <td>{{ personnel.lieuNaissance }}</td>
-                <td>{{ personnel.email }}</td>
-                <td>
-                    <a href="{{ path('personnel_show', {'id': personnel.id}) }}">show</a>
-                    <a href="{{ path('personnel_edit', {'id': personnel.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('personnel_new') }}">Create new</a>
+            </table>
+            </section>
+        </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,122 @@
+{% set route_name = app.request.attributes.get('_route') %}
+<aside>
+    <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+
+            <h5 class="centered">Sam Soffes</h5>
+            <li class="mt">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-desktop"></i>
+                    <span>UI Elements</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="#">General</a></li>
+                    <li><a href="#">Buttons</a></li>
+                    <li><a href="#">Panels</a></li>
+                    <li><a href="#">Font Awesome</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-cogs"></i>
+                    <span>Components</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="#">Grids</a></li>
+                    <li><a href="#">Calendar</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Todo List</a></li>
+                    <li><a href="#">Dropzone File Upload</a></li>
+                    <li><a href="#">Inline Editor</a></li>
+                    <li><a href="#">Multiple File Upload</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-book"></i>
+                    <span>Extra Pages</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="#">Blank Page</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Lock Screen</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Invoice</a></li>
+                    <li><a href="#">Pricing Table</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">404 Error</a></li>
+                    <li><a href="#">500 Error</a></li>
+                </ul>
+            </li>
+            <li class=" sub-menu">
+                <a href="javascript:;" class = "{{  (route_name == 'personnel_index')? 'active' }}">
+                    <i class="fa fa-tasks"></i>
+                    <span>Référentiel </span>
+                </a>
+                <ul class="sub" style=" display: {{  route_name == 'personnel_index'? 'block':'none' }}">
+                    <li
+                            class= "{{  route_name == 'personnel_index'? 'active' }} nav-item">
+                        <a href="{{ path('personnel_index')}}">Personnel</a>
+                    </li>
+                    <li><a href="#">Advanced Components</a></li>
+                    <li><a href="#">Form Validation</a></li>
+                    <li><a href="#">Contact Form</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-th"></i>
+                    <span>Data Tables</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="#">Basic Table</a></li>
+                    <li><a href="#">Responsive Table</a></li>
+                    <li><a href="#">Advanced Table</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-envelope"></i>
+                    <span>Mail </span>
+                    <span class="label label-theme pull-right mail-info">2</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class=" fa fa-bar-chart-o"></i>
+                    <span>Charts</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="#">Morris</a></li>
+                    <li><a href="#">Chartjs</a></li>
+                    <li><a href="#">Flot Charts</a></li>
+                    <li><a href="#">xChart</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-comments-o"></i>
+                    <span>Chat Room</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="#">Lobby</a></li>
+                    <li><a href="#"> Chat Room</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-map-marker"></i>
+                    <span>Google Maps </span>
+                </a>
+            </li>
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>{{ dump(route_name) }}

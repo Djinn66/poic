@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {{ encore_entry_link_tags('app') }}
+    {% block stylesheets %} {% endblock %}
+<body>
 
-        {% block javascripts %}{% endblock %}
-    </head>
-    <body>
+{{ include('header.html.twig') }}
+{{ include('aside.html.twig') }}
+
+<section id="main-content">
+    <section class="wrapper">
         {% block body %}{% endblock %}
-    </body>
+    </section>
+</section>
+
+</body>
+{{ encore_entry_script_tags('app') }}
+{% block javascripts %}{% endblock %}
 </html>

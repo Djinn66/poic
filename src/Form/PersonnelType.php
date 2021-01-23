@@ -4,6 +4,12 @@ namespace App\Form;
 
 use App\Entity\Personnel;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,17 +18,33 @@ class PersonnelType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('sexe')
-            ->add('nia')
-            ->add('nni')
-            ->add('nid')
-            ->add('nsap')
-            ->add('date_de_naissance')
-            ->add('lieu_naissance')
-            ->add('email')
-            ->add('epreuves')
+            ->add('nom', TextType::class,[
+                'attr' => ['placeholder'=> 'Nom...'],
+                ])
+            ->add('prenom', TextType::class,['attr' => ['placeholder'=> 'Prénom...']])
+            ->add('sexe', ChoiceType::class,[
+                'placeholder'=> 'Sexe...',
+                'choices' => [
+                    'Masculin' => 1,
+                    'Feminin' => 2,
+                    ],
+                ])
+            ->add('nia', TextType::class,['attr' => ['placeholder'=> 'Numéro d\'Identifiant Air...']])
+            ->add('nid', TextType::class,['attr' => ['placeholder'=> 'Numéro d\'Identifiant Défense...']])
+            ->add('nni', TextType::class,['attr' => ['placeholder'=> 'Numéro National d\'Identification...']])
+            ->add('nsap', TextType::class,['attr' => ['placeholder'=> 'Numéro Service Administratif du Personnel...']])
+            ->add('date_de_naissance', BirthdayType::class, [
+                'widget' => 'single_text',
+                'attr' => [
+                    'min' => (date('Y')-70).'-01-01',
+                    'max' => (date('Y')-17).'-01-01'
+                ]
+                //'input' => date("d/m/Y",1307276100)
+
+
+            ])
+            ->add('lieu_naissance', TextType::class,['attr' => ['placeholder'=> 'Lieu de naissance...']])
+            ->add('email',EmailType::class)
         ;
     }
 

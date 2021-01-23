@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bareme{% endblock %}
+
+{% block body %}
+    <h1>Bareme</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ bareme.id }}</td>
+            </tr>
+            <tr>
+                <th>Age_max</th>
+                <td>{{ bareme.ageMax }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ bareme.sexe }}</td>
+            </tr>
+            <tr>
+                <th>Resultat_min</th>
+                <td>{{ bareme.resultatMin }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ bareme.note }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('bareme_index') }}">back to list</a>
+
+    <a href="{{ path('bareme_edit', {'id': bareme.id}) }}">edit</a>
+
+    {{ include('bareme/_delete_form.html.twig') }}
+{% endblock %}
