@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Grade;
 use App\Form\GradeType;
+use App\Repository\ArmeeRepository;
 use App\Repository\GradeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -71,7 +72,6 @@ class GradeController extends AbstractController
 
             return $this->redirectToRoute('grade_index');
         }
-
         return $this->render('grade/edit.html.twig', [
             'grade' => $grade,
             'form' => $form->createView(),

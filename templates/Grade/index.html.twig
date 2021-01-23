@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Abreviation</th>
                 <th>Intitule</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +16,7 @@
         <tbody>
         {% for grade in grades %}
             <tr>
-                <td>{{ grade.id }}</td>
+                <td>{{ grade.abreviation }}</td>
                 <td>{{ grade.intitule }}</td>
                 <td>
                     <a href="{{ path('grade_show', {'id': grade.id}) }}">show</a>

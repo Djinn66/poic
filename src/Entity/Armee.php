@@ -6,6 +6,7 @@ use App\Repository\ArmeeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ArmeeRepository::class)
@@ -16,11 +17,13 @@ class Armee
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("grade:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("grade:read")
      */
     private $intitule;
 
@@ -30,14 +33,29 @@ class Armee
     private $epreuves;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Grade::class, inversedBy="armees")
+     * @ORM\ManyToMany(targetEntity="Grade", inversedBy="armees")
+     * @ORM\JoinTable(name="armee_grade",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="armee_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="grade_id", referencedColumnName="id")
+     *   }
+     * )
+     * @Groups("grade:read")
      */
     private $grades;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Personnel::class, mappedBy="armee")
+     */
+    private $personnels;
 
     public function __construct()
     {
         $this->epreuves = new ArrayCollection();
         $this->grades = new ArrayCollection();
+        $this->personnels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -109,4 +127,35 @@ class Armee
 
         return $this;
     }
+
+    /**
+     * @return Collection|Personnel[]
+     */
+    public function getPersonnels(): Collection
+    {
+        return $this->personnels;
+    }
+
+    public function addPersonnel(Personnel $personnel): self
+    {
+        if (!$this->personnels->contains($personnel)) {
+            $this->personnels[] = $personnel;
+            $personnel->setArmee($this);
+        }
+
+        return $this;
+    }
+
+    public function removePersonnel(Personnel $personnel): self
+    {
+        if ($this->personnels->removeElement($personnel)) {
+            // set the owning side to null (unless already changed)
+            if ($personnel->getArmee() === $this) {
+                $personnel->setArmee(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

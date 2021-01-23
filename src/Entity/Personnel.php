@@ -74,6 +74,17 @@ class Personnel
      */
     private $epreuves;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Armee::class, inversedBy="personnels")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $armee;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Grade::class, inversedBy="personnels")
+     */
+    private $grade;
+
     public function __construct()
     {
         $this->epreuves = new ArrayCollection();
@@ -241,5 +252,29 @@ class Personnel
     public function __toString(): ?String
     {
         return $this->getNom();
+    }
+
+    public function getArmee(): ?Armee
+    {
+        return $this->armee;
+    }
+
+    public function setArmee(?Armee $armee): self
+    {
+        $this->armee = $armee;
+
+        return $this;
+    }
+
+    public function getGrade(): ?Grade
+    {
+        return $this->grade;
+    }
+
+    public function setGrade(?Grade $grade): self
+    {
+        $this->grade = $grade;
+
+        return $this;
     }
 }
