@@ -21,7 +21,7 @@
                     <th>Nni</th>
                     <th>Nid</th>
                     <th>Nsap</th>
-                    <th>Date de naissance</th>
+                    <th>Age</th>
                     <th>Lieu de naissance</th>
                     <th>Email</th>
                     <th>actions</th>
@@ -37,7 +37,7 @@
                         <td>{{ personnel.nni }}</td>
                         <td>{{ personnel.nid }}</td>
                         <td>{{ personnel.nsap }}</td>
-                        <td>{{ personnel.dateDeNaissance ? personnel.dateDeNaissance|date('Y-m-d') : '' }}</td>
+                        <td>{{ personnel.getAge() }} ans</td>
                         <td>{{ personnel.lieuNaissance }}</td>
                         <td>{{ personnel.email }}</td>
                         <td>

@@ -231,6 +231,13 @@ class Personnel
         return $this;
     }
 
+    public function getAge()
+    {
+        $dateInterval = $this->date_de_naissance->diff(new \DateTime());
+
+        return $dateInterval->y;
+    }
+
     public function __toString(): ?String
     {
         return $this->getNom();

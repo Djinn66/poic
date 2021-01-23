@@ -25,8 +25,8 @@ class PersonnelType extends AbstractType
             ->add('sexe', ChoiceType::class,[
                 'placeholder'=> 'Sexe...',
                 'choices' => [
-                    'Masculin' => 1,
-                    'Feminin' => 2,
+                    'Masculin' => 'M',
+                    'Feminin' => 'F',
                     ],
                 ])
             ->add('nia', TextType::class,['attr' => ['placeholder'=> 'Numéro d\'Identifiant Air...']])

@@ -141,6 +141,10 @@ ul.sidebar-menu li ul.sub li a {
     color: #aeb2b7;
 }
 
+.centered {
+    text-align: center;
+}
+
 ul.sidebar-menu li ul.sub li a:hover {
     color: white;
     background: transparent;
