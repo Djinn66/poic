@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Epreuve index{% endblock %}
+
+{% block body %}
+
+            <div class="content-panel p-4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4><i class="fa fa-angle-right pr-1"></i>Epreuves du CCPM</h4></div>
+                    {# <div class="col-sm-1"><a class="btn btn-link-add" title="Ajouter" href="{{ path('personnel_new') }}" ><i class="fa fa-plus"></i></a></div></div> #}
+{#                    <section id="unseen">#}
+                        {% for e in epreuves|filter((e) => e.categorie == "CCPM") %}
+                            <div class="col-sm-4 p-2">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4><i class="pr-1 fas {{"fa-" ~ e.type }}" ></i>{{ e.intitule }}<a class="btn btn-sm btn-link-edit" title="Editer" href="{{ path('epreuve_edit', {'id': e.id}) }}"><i class="fa fa-edit"></i></a></h4>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Description :</h5>
+                                        <p class="card-text">With supporting text below as a natural lead-in to
+                                            additional
+                                            content.</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        {% for armee in e.armees %}
+                                            {% if armee.id == 1 %}
+                                                <span class="badge badge-info">Armée de l'Air</span>
+                                            {% elseif armee.id == 2 %}
+                                                <span class="badge badge-success">Armée de Terre</span>
+                                            {% elseif armee.id == 3 %}
+                                                <span class="badge badge-primary">Marine</span>
+                                            {% endif %}
+                                        {% else %}
+                                            Aucune Armée n'utilise cette épreuve!
+                                        {% endfor %}
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            {# <tr>
+                <td>{{ epreuve.id }}</td>
+                <td>{{ epreuve.intitule }}</td>
+                <td>{{ epreuve.categorie }}</td>
+                <td>{{ epreuve.type }}</td>
+                <td>{{ epreuve.calcul }}</td>
+                <td>{{ epreuve.periodicite ? epreuve.periodicite|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('epreuve_show', {'id': epreuve.id}) }}">show</a>
+                    <a href="{{ path('epreuve_edit', {'id': epreuve.id}) }}">edit</a>
+                </td>
+            </tr> #}
+                        {% else %}
+                            <tr>
+                                <td colspan="7">no records in CCPM</td>
+                            </tr>
+                        {% endfor %}
+
+{#                    </section>#}
+                </div>
+            </div>
+            <div class="content-panel">
+                <div class="row">
+                    {% for e in epreuves|filter((e) => e.categorie == "CCPS") %}
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ e.intitule }}</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="badge badge-primary">Marine</span>
+                                    <span class="badge badge-info">Armée de l'Air</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">no records in CCPS</td>
+                        </tr>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="content-panel">
+                <div class="row">
+                    {% for e in epreuves|filter((e) => e.categorie == "POIC") %}
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ e.intitule }}</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">no records in POIC</td>
+                        </tr>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+    <a href="{{ path('epreuve_new') }}">Create new</a>
+{% endblock %}

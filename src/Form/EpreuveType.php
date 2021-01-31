@@ -13,6 +13,9 @@ class EpreuveType extends AbstractType
     {
         $builder
             ->add('intitule')
+            ->add('categorie')
+            ->add('type')
+            ->add('calcul')
             ->add('periodicite')
             ->add('armees')
             ->add('personnels')

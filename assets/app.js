@@ -12,6 +12,7 @@ import './styles/table-responsive.css';
 
 //import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
+import '@fortawesome/fontawesome-free/css/all.css'
 //Js
 const $ = require('jquery');
 

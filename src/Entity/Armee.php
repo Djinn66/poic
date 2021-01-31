@@ -29,6 +29,7 @@ class Armee
 
     /**
      * @ORM\ManyToMany(targetEntity=Epreuve::class, inversedBy="armees")
+     * @ORM\JoinTable(name="armee_epreuve")
      */
     private $epreuves;
 

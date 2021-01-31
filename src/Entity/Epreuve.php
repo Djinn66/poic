@@ -25,11 +25,27 @@ class Epreuve
     private $intitule;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $categorie;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $calcul;
+
+    /**
      * @ORM\Column(type="date")
      */
     private $periodicite;
 
     /**
+     * Many Epreuves Have Many Armees
      * @ORM\ManyToMany(targetEntity=Armee::class, mappedBy="epreuves")
      */
     private $armees;
@@ -58,6 +74,42 @@ class Epreuve
     public function setIntitule(string $intitule): self
     {
         $this->intitule = $intitule;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?string
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(string $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getCalcul(): ?string
+    {
+        return $this->calcul;
+    }
+
+    public function setCalcul($calcul): self
+    {
+        $this->calcul = $calcul;
 
         return $this;
     }
