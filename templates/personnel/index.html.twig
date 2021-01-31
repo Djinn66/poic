@@ -3,13 +3,12 @@
 {% block title %}Personnel index{% endblock %}
 
 {% block body %}
-    <h1></h1>
     <div class="col-md-12">
         <div class="content-panel">
             <div class="row">
                 <div class="col-sm-11">
             <h4><i class="fa fa-angle-right"></i> Liste du personnel</h4></div>
-                <div class="col-sm-1"><a class="btn btn-link-add" title="Ajouter" href="{{ path('personnel_new') }}"><i class="fa fa-plus"></i></a></div></div>
+                <div class="col-sm-1"><a class="btn btn-link-add" title="Ajouter" href="{{ path('personnel_new') }}" ><i class="fa fa-plus"></i></a></div></div>
             <section id="unseen">
                 <table class="table table-striped table-condensed">
                 <thead>
@@ -47,6 +46,7 @@
 {#                                <a class="btn btn-warning btn-sm" href="{{ path('personnel_show', {'id': personnel.id}) }}"><i class="fa fa-eye"></i></a>#}
                                 <a class="btn btn-sm btn-link-edit" title="Editer" href="{{ path('personnel_edit', {'id': personnel.id}) }}"><i class="fa fa-edit"></i></a>
                                 {{ include('personnel/_delete_form.html.twig') }}</div>
+
                         </td>
                     </tr>
                 {% else %}

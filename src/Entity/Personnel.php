@@ -35,7 +35,7 @@ class Personnel
     private $sexe;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $nia;
 
@@ -102,7 +102,7 @@ class Personnel
 
     public function setNom(string $nom): self
     {
-        $this->nom = $nom;
+        $this->nom = strtoupper($nom);
 
         return $this;
     }
@@ -114,7 +114,7 @@ class Personnel
 
     public function setPrenom(string $prenom): self
     {
-        $this->prenom = $prenom;
+        $this->prenom = ucfirst(strtolower($prenom));
 
         return $this;
     }
@@ -198,19 +198,19 @@ class Personnel
 
     public function setLieuNaissance(string $lieu_naissance): self
     {
-        $this->lieu_naissance = $lieu_naissance;
+        $this->lieu_naissance = ucfirst(strtolower($lieu_naissance));
 
         return $this;
     }
 
     public function getEmail(): ?string
     {
-        return $this->email;
+        return str_replace("@intradef.gouv.fr","",$this->email);
     }
 
     public function setEmail(string $email): self
     {
-        $this->email = $email;
+        $this->email = $email."@intradef.gouv.fr";
 
         return $this;
     }

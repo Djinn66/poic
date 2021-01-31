@@ -6,26 +6,29 @@
             {{ form_start(form) }}
             {# {{ form_widget(form) }} #}
             <div class="row">
-                <div class="col-md-6">{{ form_row(form.armee) }}</div>
-                <div class="col-md-6">{{ form_row(form.email) }}</div>
+                <div class="col-md-6">{{ form_row(form.nom) }}</div>
+                <div class="col-md-6">{{ form_row(form.prenom) }}</div>
+
             </div>
             <div class="row">
-                <div class="col-md-5">{{ form_row(form.nom) }}</div>
-                <div class="col-md-5">{{ form_row(form.prenom) }}</div>
-                <div class="col-md-2">{{ form_row(form.sexe) }}</div>
+                <div class="col-md-3">{{ form_row(form.sexe) }}</div>
+                <div class="col-md-4">{{ form_row(form.date_de_naissance) }}</div>
+                <div class="col-md-5">{{ form_row(form.lieu_naissance) }}</div>
             </div>
             <div class="row">
-                <div class="col-md-6">{{ form_row(form.nia) }}</div>
+                <div class="col-md-4">{{ form_row(form.armee) }}</div>
+                <div class="col-md-3">{{ form_row(form.grade) }}</div>
+                <div class="col-md-5">{{ form_row(form.email) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">{{ form_row(form.nni) }}</div>
                 <div class="col-md-6">{{ form_row(form.nid) }}</div>
             </div>
             <div class="row">
                 <div class="col-md-6">{{ form_row(form.nsap) }}</div>
-                <div class="col-md-6">{{ form_row(form.nni) }}</div>
+                <div class="col-md-6">{{ form_row(form.nia) }}</div>
             </div>
-            <div class="row">
-                <div class="col-md-3">{{ form_row(form.date_de_naissance) }}</div>
-                <div class="col-md-5">{{ form_row(form.lieu_naissance) }}</div>
-            </div>
+
             <div class="row justify-content-md-center">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <a class="btn btn-outline-primary btn-sm" href="{{ path('personnel_index') }}"><i class="fa fa-backward"></i> Retour</a>

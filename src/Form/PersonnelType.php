@@ -15,6 +15,9 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PersonnelType extends AbstractType
@@ -25,20 +28,12 @@ class PersonnelType extends AbstractType
             ->add('armee', EntityType::class, [
                 'class' => Armee::class,
                 'placeholder' => 'Armée...'
-//                'query_builder' => function (EntityRepository $er) {
-//                    return $er->createQueryBuilder('u')
-//                        ->orderBy('u.intitule', 'ASC');
-//                },
-//                'choice_label' => 'intitule',
             ])
             ->add('grade', EntityType::class, [
-                'placeholder' => 'Grade...',
+                'placeholder' => $options['data']->getArmee() ? 'Grade...' : 'Sélectionnez une Armée...' ,
                 'class' => Grade::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('g')
-                        ->orderBy('g.rang', 'DESC');
-                },
-                'choice_label' => 'intitule',])
+                'choices'=> $options['data']->getArmee() ? $options['data']->getArmee()->getGrades() : [],
+            ])
             ->add('nom', TextType::class, [
                 'attr' => ['placeholder' => 'Nom...'],
             ])
@@ -50,7 +45,12 @@ class PersonnelType extends AbstractType
                     'Feminin' => 'F',
                 ],
             ])
-            ->add('nia', TextType::class, ['attr' => ['placeholder' => 'Numéro d\'Identifiant Air...']])
+            ->add('nia', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'Numéro d\'Identifiant Air...',
+                ],
+
+            ])
             ->add('nid', TextType::class, ['attr' => ['placeholder' => 'Numéro d\'Identifiant Défense...']])
             ->add('nni', TextType::class, ['attr' => ['placeholder' => 'Numéro National d\'Identification...']])
             ->add('nsap', TextType::class, ['attr' => ['placeholder' => 'Numéro Service Administratif du Personnel...']])
@@ -65,8 +65,10 @@ class PersonnelType extends AbstractType
 
             ])
             ->add('lieu_naissance', TextType::class, ['attr' => ['placeholder' => 'Lieu de naissance...']])
-            ->add('email', EmailType::class);
+            ->add('email', TextType::class);
+
     }
+
 
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -42,6 +42,7 @@ class Armee
      *     @ORM\JoinColumn(name="grade_id", referencedColumnName="id")
      *   }
      * )
+     * @ORM\OrderBy({"id" = "DESC"})
      * @Groups("grade:read")
      */
     private $grades;

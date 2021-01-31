@@ -30,7 +30,7 @@ class Bareme
     /**
      * @ORM\Column(type="integer")
      */
-    private $resultat_min;
+    private $resultat;
 
     /**
      * @ORM\Column(type="integer")
@@ -66,14 +66,14 @@ class Bareme
         return $this;
     }
 
-    public function getResultatMin(): ?int
+    public function getResultat(): ?int
     {
-        return $this->resultat_min;
+        return $this->resultat;
     }
 
-    public function setResultatMin(int $resultat_min): self
+    public function setResultat(int $resultat): self
     {
-        $this->resultat_min = $resultat_min;
+        $this->resultat = $resultat;
 
         return $this;
     }
