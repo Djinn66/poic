@@ -17,13 +17,13 @@ class Armee
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("grade:read")
+     * @Groups({"grade:read", "armee:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("grade:read")
+     * @Groups({"grade:read", "armee:read"})
      */
     private $intitule;
 

@@ -6,6 +6,7 @@ use App\Repository\PersonnelRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PersonnelRepository::class)
@@ -16,56 +17,67 @@ class Personnel
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("epreuve:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("epreuve:read")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("epreuve:read")
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=1)
+     * @Groups("epreuve:read")
      */
     private $sexe;
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Groups("epreuve:read")
      */
     private $nia;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("epreuve:read")
      */
     private $nni;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("epreuve:read")
      */
     private $nid;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("epreuve:read")
      */
     private $nsap;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups("epreuve:read")
      */
     private $date_de_naissance;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("epreuve:read")
      */
     private $lieu_naissance;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("epreuve:read")
      */
     private $email;
 
@@ -85,9 +97,15 @@ class Personnel
      */
     private $grade;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ValidationEpreuve::class, inversedBy="id_personnel")
+     */
+    private $id_validation;
+
     public function __construct()
     {
         $this->epreuves = new ArrayCollection();
+        $this->id_validation = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -277,4 +295,17 @@ class Personnel
 
         return $this;
     }
+
+    public function getIdValidation(): ?ValidationEpreuve
+    {
+        return $this->id_validation;
+    }
+
+    public function setIdValidation(?ValidationEpreuve $id_validation): self
+    {
+        $this->id_validation = $id_validation;
+
+        return $this;
+    }
+
 }

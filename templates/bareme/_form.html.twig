@@ -1,4 +1,22 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+<div class="col-lg-12">
+    <div class="form-panel">
+        <div class="form-horizontal style-form">
+            <h4>{{ type }} un bareme</h4>
+            {{ form_start(form) }}
+            {# {{ form_widget(form) }} #}
+            <div class="row">
+                <div class="col-md-3">{{ form_row(form.age_max) }}</div>
+                <div class="col-md-3">{{ form_row(form.sexe) }}</div>
+                <div class="col-md-3">{{ form_row(form.resultat_min) }}</div>
+                <div class="col-md-3">{{ form_row(form.note) }}</div>
+            </div>
+            <div class="row justify-content-md-center">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a class="btn btn-outline-primary btn-sm" href="{{ path('bareme_index') }}"><i class="fa fa-backward"></i> Retour</a>
+                <button class="btn btn-theme btn-sm"><i class="fa fa-save"></i>{{ button_label|default(' Enregistrer') }}</button>
+            </div></div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

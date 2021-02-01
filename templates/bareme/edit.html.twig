@@ -3,11 +3,5 @@
 {% block title %}Edit Bareme{% endblock %}
 
 {% block body %}
-    <h1>Edit Bareme</h1>
-
-    {{ include('bareme/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('bareme_index') }}">back to list</a>
-
-    {{ include('bareme/_delete_form.html.twig') }}
+    {{ include('bareme/_form.html.twig', {type:'Editer','button_label': 'Modifier'}) }}
 {% endblock %}

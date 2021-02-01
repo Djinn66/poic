@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ValidationEpreuve index{% endblock %}
+
+{% block body %}
+    <h1>ValidationEpreuve index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Resultat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for validation_epreuve in validation_epreuves %}
+            <tr>
+                <td>{{ validation_epreuve.id }}</td>
+                <td>{{ validation_epreuve.date ? validation_epreuve.date|date('Y-m-d') : '' }}</td>
+                <td>{{ validation_epreuve.resultat }}</td>
+                <td>
+                    <a href="{{ path('validation_epreuve_show', {'id': validation_epreuve.id}) }}">show</a>
+                    <a href="{{ path('validation_epreuve_edit', {'id': validation_epreuve.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('validation_epreuve_new') }}">Create new</a>
+{% endblock %}

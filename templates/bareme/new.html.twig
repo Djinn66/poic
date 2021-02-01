@@ -3,9 +3,7 @@
 {% block title %}New Bareme{% endblock %}
 
 {% block body %}
-    <h1>Create new Bareme</h1>
 
-    {{ include('bareme/_form.html.twig') }}
+    {{ include('bareme/_form.html.twig',{type:'Créer'}) }}
 
-    <a href="{{ path('bareme_index') }}">back to list</a>
 {% endblock %}

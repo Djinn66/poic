@@ -6,6 +6,7 @@ use App\Entity\Bareme;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class BaremeType extends AbstractType
 {
@@ -13,7 +14,13 @@ class BaremeType extends AbstractType
     {
         $builder
             ->add('age_max')
-            ->add('sexe')
+            ->add('sexe', ChoiceType::class,[
+                'placeholder' => 'Sexe...',
+                'choices' => [
+                    'Masculin' => 'M',
+                    'Feminin' => 'F',
+                ],
+            ])
             ->add('resultat_min')
             ->add('note')
         ;
