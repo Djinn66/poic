@@ -85,9 +85,15 @@ class Personnel
      */
     private $grade;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Inaptitude::class, mappedBy="personnel")
+     */
+    private $inaptitudes;
+
     public function __construct()
     {
         $this->epreuves = new ArrayCollection();
+        $this->id_inaptitude = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -277,4 +283,35 @@ class Personnel
 
         return $this;
     }
+
+    /**
+     * @return Collection|Inaptitude[]
+     */
+    public function getInaptitudes(): Collection
+    {
+        return $this->inaptitudes;
+    }
+
+    public function addInaptitude(Inaptitude $inaptitude): self
+    {
+        if (!$this->inaptitudes->contains($inaptitude)) {
+            $this->inaptitudes[] = $inaptitude;
+            $inaptitude->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInaptitude(Inaptitude $inaptitude): self
+    {
+        if ($this->inaptitudes->removeElement($inaptitude)) {
+            // set the owning side to null (unless already changed)
+            if ($inaptitude->getPersonnel() === $this) {
+                $inaptitude->setPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

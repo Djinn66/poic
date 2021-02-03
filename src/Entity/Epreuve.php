@@ -25,7 +25,7 @@ class Epreuve
     private $intitule;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="integer")
      */
     private $periodicite;
 
@@ -39,10 +39,16 @@ class Epreuve
      */
     private $personnels;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Inaptitude::class, mappedBy="epreuves")
+     */
+    private $inaptitudes;
+
     public function __construct()
     {
         $this->armees = new ArrayCollection();
         $this->personnels = new ArrayCollection();
+        $this->inaptitudes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -129,4 +135,32 @@ class Epreuve
 
         return $this;
     }
+
+    /**
+     * @return Collection|Inaptitude[]
+     */
+    public function getInaptitudes(): Collection
+    {
+        return $this->inaptitudes;
+    }
+
+    public function addInaptitude(Inaptitude $inaptitude): self
+    {
+        if (!$this->inaptitudes->contains($inaptitude)) {
+            $this->inaptitudes[] = $inaptitude;
+            $inaptitude->addEpreufe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInaptitude(Inaptitude $inaptitude): self
+    {
+        if ($this->inaptitudes->removeElement($inaptitude)) {
+            $inaptitude->removeEpreufe($this);
+        }
+
+        return $this;
+    }
+
 }

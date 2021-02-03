@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inaptitude index{% endblock %}
+
+{% block body %}
+    <h1>Inaptitude index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date_debut</th>
+                <th>Date_fin</th>
+                <th>Fichier</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for inaptitude in inaptitudes %}
+            <tr>
+                <td>{{ inaptitude.id }}</td>
+                <td>{{ inaptitude.dateDebut ? inaptitude.dateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ inaptitude.dateFin ? inaptitude.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ inaptitude.fichier }}</td>
+                <td>
+                    <a href="{{ path('inaptitude_show', {'id': inaptitude.id}) }}">show</a>
+                    <a href="{{ path('inaptitude_edit', {'id': inaptitude.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('inaptitude_new') }}">Create new</a>
+{% endblock %}
