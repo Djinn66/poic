@@ -1,4 +1,14 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{{ form_start(formBareme) }}
+    {#{{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>#}
+    <td>{{ form_row(formBareme.age_max) }}</td>
+    <td>{{ form_row(formBareme.sexe) }}</td>
+    <td>{{ form_row(formBareme.resultat) }}</td>
+    <td>{{ form_row(formBareme.note) }}</td>
+    <td>
+        <button class="btn btn-link-add">
+            <i class="fas fa-plus pr-1" title="{{ button_label|default(' Enregistrer') }}"></i>
+        </button>
+    </td>
+
+{{ form_end(formBareme) }}

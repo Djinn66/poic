@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Armee;
-use App\Entity\Grade;
+use App\Entity\Epreuve;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,12 +15,13 @@ class ArmeeType extends AbstractType
     {
         $builder
             ->add('intitule')
-            ->add('epreuves')
-            ->add('grades', EntityType::class, [
-                'class'=> Grade::class,
-                'multiple'=>true,
-                'expanded' =>true,
-
+            ->add('epreuves', EntityType::class,[
+                'class' => Epreuve::class,
+                'group_by' => 'categorie',
+                'attr'=> [
+                    'class'=> 'selectpicker'
+                ],
+                'multiple' => true,
             ])
         ;
     }

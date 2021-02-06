@@ -69,12 +69,12 @@ class BaremeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('bareme_index');
+            return $this->redirectToRoute('epreuve_edit',['id'=>$bareme->getEpreuve()->getId()]);
         }
 
         return $this->render('bareme/edit.html.twig', [
             'bareme' => $bareme,
-            'form' => $form->createView(),
+            'formBareme' => $form->createView(),
         ]);
     }
 

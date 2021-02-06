@@ -1,41 +1,32 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Bareme index{% endblock %}
-
-{% block body %}
-    <h1>Bareme index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Age_max</th>
-                <th>Sexe</th>
-                <th>Resultat_min</th>
-                <th>Note</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for bareme in baremes %}
-            <tr>
-                <td>{{ bareme.id }}</td>
-                <td>{{ bareme.ageMax }}</td>
-                <td>{{ bareme.sexe }}</td>
-                <td>{{ bareme.resultatMin }}</td>
-                <td>{{ bareme.note }}</td>
-                <td>
-                    <a href="{{ path('bareme_show', {'id': bareme.id}) }}">show</a>
-                    <a href="{{ path('bareme_edit', {'id': bareme.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('bareme_new') }}">Create new</a>
-{% endblock %}
+<table class="table">
+    <thead>
+    <tr>
+        <th>Age max</th>
+        <th>Sexe</th>
+        <th>Résultat</th>
+        <th>Note</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{ include('bareme/_form.html.twig', {'button_label': 'Add'}) }}
+    {% for bareme in epreuve.baremes %}
+        <tr id="bareme-{{ bareme.id }}">
+{#            {{ include('bareme/_form.html.twig', {'button_label': 'Add'}) }}#}
+            <td>{{ bareme.ageMax }}</td>
+            <td>{{ bareme.sexe }}</td>
+            <td>{{ bareme.resultat }}</td>
+            <td>{{ bareme.note }}</td>
+            <td>
+                <div class="mr-auto p-0">
+                    <a class="btn btn-sm btn-link-edit btn-bareme" data-toogle="tab" data-target="bareme-{{ bareme.id }}" title="Editer"  href="{{ path('bareme_edit', {'id': bareme.id}) }}">
+                        <i class="fa fa-edit"></i></a></div>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

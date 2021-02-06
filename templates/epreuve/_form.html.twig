@@ -1,4 +1,41 @@
+{#
 {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+#}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+<div class="col-lg-12">
+    <div class="form-panel">
+        <div class="form-horizontal style-form">
+            {% if erreur != "" %} <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Erreur !</strong> Vous devez enregistrer une épreuve avant de créer un nouveau barême.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+            <div class="row">
+                <a class="btn btn-link-edit btn-sm" href="{{ path('epreuve_index') }}" title="Retour"><i class="fas fa-step-backward"></i></a>
+            <h4 class="mr-auto col-md-4">{{ type }} une épreuve</h4>
+            {{ form_start(form) }}
+            {# {{ form_widget(form) }} #}
+                <button class="btn btn-link-add"><i class="fas fa-lg fa-save pr-1" title="{{ button_label|default(' Enregistrer') }}"></i></button>
+            </div>
+            <div class="row">
+                <div class="col-md-4">{{ form_row(form.intitule) }}</div>
+                <div class="col-md-4">{{ form_row(form.categorie) }}</div>
+                <div class="col-md-4">{{ form_row(form.type) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">{{ form_row(form.calcul) }}</div>
+                <div class="col-md-3">{{ form_row(form.periodicite) }}</div>
+            </div>
+            {{ form_end(form) }}
+            <hr>
+            <h5>Créer un barème</h5>
+            {{ include('bareme/index.html.twig') }}
+        </div>
+    </div>
+</div>

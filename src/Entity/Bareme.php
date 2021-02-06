@@ -37,6 +37,12 @@ class Bareme
      */
     private $note;
 
+    /**
+     * Many Baremes have one Epreuve.
+     * @ORM\ManyToOne (targetEntity=Epreuve::class, inversedBy="baremes")
+     */
+    private $epreuve;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +92,18 @@ class Bareme
     public function setNote(int $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getEpreuve(): ?Epreuve
+    {
+        return $this->epreuve;
+    }
+
+    public function setEpreuve(?Epreuve $epreuve): self
+    {
+        $this->epreuve = $epreuve;
 
         return $this;
     }

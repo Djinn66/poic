@@ -43,6 +43,14 @@ a, a:hover, a:focus {
     color: #ed5565;
 }
 
+.btn-link-save{
+    color: #0DA000;
+}
+
+.btn-link-add:hover{
+    color: #000000;
+}
+
 
 .btn-theme {
     color: #4ECDC4;
@@ -436,4 +444,35 @@ label {
     text-align: center;
     font-size: 12px;
     line-height: 1.42857;
+}
+
+.badge-airforce{
+    color: #FFFFFF;
+    background-color: #3f87f4;
+    border: 1px solid #3f87f4;
+}
+.badge-airforce:hover{
+    color: #3f87f4;
+    background-color: #FFFFFF;
+    border: 1px solid #3f87f4;
+}
+.badge-marine{
+    color: #FFFFFF;
+    background-color: #0000ae;
+    border: 1px solid #0000ae;
+}
+.badge-marine:hover{
+    color: #0000ae;
+    background-color: #FFFFFF;
+    border: 1px solid #0000ae;
+}
+.badge-army{
+    color: #FFFFFF;
+    background-color: #ce8200;
+    border: 1px solid #ce8200;
+}
+.badge-army:hover{
+    color: #ce8200;
+    background-color: #FFFFFF;
+    border: 1px solid #ce8200;
 }

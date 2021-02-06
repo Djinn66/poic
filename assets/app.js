@@ -13,6 +13,8 @@ import './styles/table-responsive.css';
 //import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 import '@fortawesome/fontawesome-free/css/all.css'
+import 'bootstrap-select/dist/css/bootstrap-select.css'
+
 //Js
 const $ = require('jquery');
 
@@ -26,6 +28,7 @@ import 'jquery.scrollto';
 import 'jquery.nicescroll';
 import './jquery.dcjqaccordion.2.7';
 import './common-scripts';
+import 'bootstrap-select/js/bootstrap-select';
 //import 'dcjqaccordion/js/jquery.dcjqaccordion.2.7'
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything

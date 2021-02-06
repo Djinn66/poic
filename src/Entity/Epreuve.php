@@ -40,7 +40,7 @@ class Epreuve
     private $calcul;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="integer")
      */
     private $periodicite;
 
@@ -55,10 +55,17 @@ class Epreuve
      */
     private $personnels;
 
+    /**
+     * One Epreuve has many Baremes. This is the inverse side.
+     * @ORM\OneToMany(targetEntity=Bareme::class, mappedBy="epreuve")
+     */
+    private $baremes;
+
     public function __construct()
     {
         $this->armees = new ArrayCollection();
         $this->personnels = new ArrayCollection();
+        $this->baremes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -114,12 +121,12 @@ class Epreuve
         return $this;
     }
 
-    public function getPeriodicite(): ?\DateTimeInterface
+    public function getPeriodicite(): ?int
     {
         return $this->periodicite;
     }
 
-    public function setPeriodicite(\DateTimeInterface $periodicite): self
+    public function setPeriodicite(int $periodicite): self
     {
         $this->periodicite = $periodicite;
 
@@ -178,6 +185,29 @@ class Epreuve
     public function removePersonnel(Personnel $personnel): self
     {
         $this->personnels->removeElement($personnel);
+
+        return $this;
+    }
+    /**
+     * @return Collection|bareme[]
+     */
+    public function getBaremes(): Collection
+    {
+        return $this->baremes;
+    }
+
+    public function addBareme(Bareme $bareme): self
+    {
+        if (!$this->baremes->contains($bareme)) {
+            $this->baremes[] = $bareme;
+        }
+
+        return $this;
+    }
+
+    public function removeBareme(Bareme $bareme): self
+    {
+        $this->baremes->removeElement($bareme);
 
         return $this;
     }
